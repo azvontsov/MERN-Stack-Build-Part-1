@@ -17,9 +17,9 @@ const cors =require('cors')
 const morgan = require('morgan')
 
 
-///////////////////////////////
+
 // DATABASE CONNECTION
-////////////////////////////////
+
 // Establish Connection
 mongoose.connect(DATABASE_URL)
 // Connection Events
@@ -28,9 +28,9 @@ mongoose.connection
   .on("close", () => console.log("You are disconnected from MongoDB"))
   .on("error", (error) => console.log(error))
 
-///////////////////////////////
+
 // MODELS
-////////////////////////////////
+
 const PeopleSchema = new mongoose.Schema({ 
     name: String,
     image: String,
@@ -39,16 +39,16 @@ const PeopleSchema = new mongoose.Schema({
 
 const People = mongoose.model('People', PeopleSchema)
 
-///////////////////////////////
+
 // MiddleWare
-////////////////////////////////
+
 app.use(cors())
 app.use(morgan('dev'))
-app.use(express.json()) // JSON.parse("{"name":"joe"}") => {name: joe}
+app.use(express.json()) // JSON.parse("{"name":"anton"}") => {name: anton}
 
-///////////////////////////////
+
 // ROUTES
-////////////////////////////////
+
 // create a test route 
 app.get('/', (req,res) => {
     res.send('hello world')
@@ -90,12 +90,6 @@ app.put('/people/:id', async(req, res) => {
 
 
 
-
-
-
-
-
-///////////////////////////////
 // LISTENER
-////////////////////////////////
+
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`))
